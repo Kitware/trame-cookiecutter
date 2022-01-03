@@ -1,0 +1,1 @@
+graft {{ cookiecutter.import_name }}/module/serve
