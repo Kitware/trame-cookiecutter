@@ -1,0 +1,4 @@
+PyWebVue: # Default app under /index.html
+  app: {{cookiecutter.entry_point}}
+{{cookiecutter.package_name}}: # /{{cookiecutter.package_name}}.html
+  app: {{cookiecutter.entry_point}}

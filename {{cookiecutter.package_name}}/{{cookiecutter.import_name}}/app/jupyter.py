@@ -1,0 +1,30 @@
+from trame.app import get_server, jupyter
+from {{cookiecutter.import_name}}.app import engine, ui
+
+
+def show(server = None, **kwargs):
+    """Run and display the trame application in jupyter's event loop
+
+    The kwargs are forwarded to IPython.display.IFrame()
+    """
+    if server is None:
+        server = get_server()
+
+    if isinstance(server, str):
+        server = get_server(server)
+
+    engine.initialize(server)
+    ui.initialize(server)
+    jupyter.show(server, **kwargs)
+
+
+def jupyter_proxy_info():
+    """Get the config to run the trame application via jupyter's server proxy
+
+    This is provided to the `jupyter_serverproxy_servers` entrypoint, and the
+    jupyter server proxy will use it to start the application as a separate
+    process.
+    """
+    return {
+        'command': ['{{cookiecutter.entry_point}}', '-p', '0', '--server'],
+    }
