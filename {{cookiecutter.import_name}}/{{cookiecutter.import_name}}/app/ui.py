@@ -6,7 +6,7 @@ from {{cookiecutter.import_name}} import html as my_widgets
 {%- endif %}
 
 # Set value to state
-state["my_title"] = "{{cookiecutter.project_name}}"
+state.my_title = "{{cookiecutter.project_name}}"
 
 # Create single page layout type
 # (FullScreenPage, SinglePage, SinglePageWithDrawer)
