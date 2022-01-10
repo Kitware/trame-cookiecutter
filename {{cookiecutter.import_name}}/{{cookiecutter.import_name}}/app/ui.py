@@ -19,7 +19,9 @@ layout = SinglePage(
 layout.title.set_text("{{cookiecutter.project_name}}")
 with layout.toolbar as tb:
     vuetify.VSpacer()
+{%- raw %}
     tb.add_child("{{ my_title }}") # Use string template to show my_title value
+{%- endraw %}
     vuetify.VSpacer()
     vuetify.VBtn("Click me", click=ctrl.btn_click)
 
