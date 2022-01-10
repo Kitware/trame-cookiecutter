@@ -1,8 +1,8 @@
-from trame import controller as ctrl
+from trame import state, controller as ctrl
 from trame.layouts import SinglePage
 from trame.html import vuetify
 {%- if cookiecutter.include_components %}
-from .. import html as my_widgets
+from {{cookiecutter.import_name}} import html as my_widgets
 {%- endif %}
 
 # Create single page layout type
@@ -13,8 +13,11 @@ layout = SinglePage(
 )
 
 # Toolbar
+state.my_title = "{{cookiecutter.project_name}}"
 layout.title.set_text("{{cookiecutter.project_name}}")
-with layout.toolbar:
+with layout.toolbar as tb:
+    vuetify.VSpacer()
+    tb.add_child("{{ my_title }}")
     vuetify.VSpacer()
     vuetify.VBtn("Click me", click=ctrl.btn_click)
 

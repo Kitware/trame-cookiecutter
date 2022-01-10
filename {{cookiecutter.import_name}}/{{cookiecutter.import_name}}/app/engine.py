@@ -1,6 +1,11 @@
 r"""
 Define your classes and create the instances that you need to expose
 """
+from trame import state
+
+# ---------------------------------------------------------
+# Methods
+# ---------------------------------------------------------
 
 
 def initialize():
@@ -9,6 +14,7 @@ def initialize():
 
 def on_click():
     print("Click")
+    state.my_title = state.my_title[::-1]
 
 
 def on_reset():
@@ -21,3 +27,13 @@ def widget_click():
 
 def widget_change():
     print("Widget Change")
+
+
+# ---------------------------------------------------------
+# Listeners
+# ---------------------------------------------------------
+
+
+@state.change("my_title")
+def title_change(my_title, **kwargs):
+    print(f" => title changed to {my_title}")
