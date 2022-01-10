@@ -9,7 +9,7 @@ from trame import state
 
 
 def initialize():
-    print("Application starting")
+    print("Application starting: Layout(on_ready=xxx)")
 
 
 def on_click():

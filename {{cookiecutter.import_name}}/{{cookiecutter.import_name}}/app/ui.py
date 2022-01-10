@@ -5,6 +5,9 @@ from trame.html import vuetify
 from {{cookiecutter.import_name}} import html as my_widgets
 {%- endif %}
 
+# Set value to state
+state["my_title"] = "{{cookiecutter.project_name}}"
+
 # Create single page layout type
 # (FullScreenPage, SinglePage, SinglePageWithDrawer)
 layout = SinglePage(
@@ -13,11 +16,10 @@ layout = SinglePage(
 )
 
 # Toolbar
-state.my_title = "{{cookiecutter.project_name}}"
 layout.title.set_text("{{cookiecutter.project_name}}")
 with layout.toolbar as tb:
     vuetify.VSpacer()
-    tb.add_child("{{ my_title }}")
+    tb.add_child("{{ my_title }}") # Use string template to show my_title value
     vuetify.VSpacer()
     vuetify.VBtn("Click me", click=ctrl.btn_click)
 
