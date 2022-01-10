@@ -12,5 +12,5 @@ pip install cookiecutter
 
 Generate your project:
 ```
-cookiecutter gh:kitware/trame
+cookiecutter gh:kitware/cookiecutter-trame
 ```
