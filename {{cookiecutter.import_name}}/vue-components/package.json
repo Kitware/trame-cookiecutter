@@ -1,5 +1,5 @@
 {
-  "name": "vue-{{cookiecutter.name}}",
+  "name": "vue-{{cookiecutter.import_name}}",
   "private": true,
   "version": "0.0.0",
   "dependencies": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "serve:CustomWidget": "vue-cli-service serve src/tests/CustomWidget/main.js",
-    "build": "vue-cli-service build --target lib --name {{cookiecutter.name}} --filename vue-{{cookiecutter.name}} src/use.js",
+    "build": "vue-cli-service build --target lib --name {{cookiecutter.import_name}} --filename vue-{{cookiecutter.import_name}} src/use.js",
     "lint": "vue-cli-service lint"
   },
   "devDependencies": {
