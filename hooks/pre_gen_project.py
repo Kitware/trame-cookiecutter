@@ -23,7 +23,7 @@ if not re.match(MODULE_REGEX, import_name):
 # Set some convenience cookie cutter variables
 {% set _ = cookiecutter.update({
     'vue_prefix': 'your',
-    'entry_point': cookiecutter.import_name,
+    'entry_point': cookiecutter.package_name,
     'is_known_license': cookiecutter.license != 'Other',
     'is_open_source': cookiecutter.license != 'Other',
     'include_app': cookiecutter.project_type != 'Components',
