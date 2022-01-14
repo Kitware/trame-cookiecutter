@@ -1,4 +1,4 @@
-from .controller import bind_methods
+from .controller import bind_changes, bind_methods
 from .ui import layout
 
 
@@ -11,6 +11,7 @@ def start_desktop():
 
 
 def main():
+    bind_changes()
     bind_methods()
     start_server()
 
