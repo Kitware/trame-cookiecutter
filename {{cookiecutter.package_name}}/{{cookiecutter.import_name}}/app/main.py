@@ -1,18 +1,19 @@
-from .controller import bind_changes, bind_methods
-from .ui import layout
+from trame import setup_dev
+
+from . import controller, ui
 
 
 def start_server():
-    layout.start()
+    setup_dev(ui, controller)
+    ui.layout.start()
 
 
 def start_desktop():
-    layout.start_desktop_window()
+    ui.layout.start_desktop_window()
 
 
 def main():
-    bind_changes()
-    bind_methods()
+    controller.on_start()
     start_server()
 
 
