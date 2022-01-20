@@ -33,6 +33,6 @@ def widget_change():
 # Listeners
 # ---------------------------------------------------------
 
-
+@state.change("my_title")
 def title_change(my_title, **kwargs):
     print(f" => title changed to {my_title}")
