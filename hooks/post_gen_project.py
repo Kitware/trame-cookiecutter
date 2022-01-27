@@ -24,3 +24,4 @@ if not {{ cookiecutter.include_components }}:
 
 if not {{ cookiecutter.include_app }}:
     remove_dir('{{ cookiecutter.import_name }}/app')
+    remove_dir('bundles')

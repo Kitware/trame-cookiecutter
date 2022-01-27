@@ -7,32 +7,28 @@ from trame import state
 # Methods
 # ---------------------------------------------------------
 
-
 def initialize():
-    print("Application starting: Layout(on_ready=xxx)")
+    print(">>> ENGINE: Application initialize only once")
 
+def protocols_ready():
+    print(">>> ENGINE: Server protocols initialized / Client not connected yet")
 
-def on_click():
-    print("Click")
-    state.my_title = state.my_title[::-1]
+def reset_resolution():
+    state.resolution = 6
 
-
-def on_reset():
-    print("Reset")
-
-
+{%- if cookiecutter.include_components %}
 def widget_click():
-    print("Widget Click")
-
+    print(">>> ENGINE: Widget Click")
 
 def widget_change():
-    print("Widget Change")
+    print(">>> ENGINE: Widget Change")
 
+{%- endif %}
 
 # ---------------------------------------------------------
 # Listeners
 # ---------------------------------------------------------
 
-@state.change("my_title")
-def title_change(my_title, **kwargs):
-    print(f" => title changed to {my_title}")
+@state.change("resolution")
+def resolution_changed(resolution, **kwargs):
+    print(f">>> ENGINE: Slider updating resolution to {resolution}")

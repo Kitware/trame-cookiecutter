@@ -7,15 +7,16 @@ from . import engine
 
 
 def bind_methods():
-    ctrl.btn_click = engine.on_click
-    ctrl.btn_reset = engine.on_reset
-    ctrl.on_ready = engine.initialize
+    ctrl.on_ready = engine.protocols_ready
+    ctrl.reset_resolution = engine.reset_resolution
+{%- if cookiecutter.include_components %}
     ctrl.widget_click = engine.widget_click
     ctrl.widget_change = engine.widget_change
-
+{%- endif %}
 
 def on_start():
     """Method called for initialization when the application starts"""
+    engine.initialize()
     bind_methods()
 
 
