@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 CURRENT_DIR=`dirname "$0"`
-ROOT_DIR=$CURRENT_DIR/../../..
+DEPLOY_DIR=`realpath $CURRENT_DIR/..`
+ROOT_DIR=`realpath $CURRENT_DIR/../../..`
 
 docker run -it --rm         \
-    --env TRAME_BUILD_ONLY=1 \
-    -v "$CURRENT_DIR:/deploy" \
+    -e TRAME_BUILD_ONLY=1 \
+    -v "$DEPLOY_DIR:/deploy" \
     -v "$ROOT_DIR:/local-app"  \
-    trame
+    kitware/trame
