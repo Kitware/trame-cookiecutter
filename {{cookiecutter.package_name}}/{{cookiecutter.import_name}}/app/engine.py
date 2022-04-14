@@ -1,27 +1,32 @@
 r"""
 Define your classes and create the instances that you need to expose
 """
+import logging
+
 from trame import state
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 # ---------------------------------------------------------
 # Methods
 # ---------------------------------------------------------
 
 def initialize():
-    print(">>> ENGINE: Application initialize only once")
+    logger.info(">>> ENGINE: Application initialize only once")
 
 def protocols_ready():
-    print(">>> ENGINE: Server protocols initialized / Client not connected yet")
+    logger.info(">>> ENGINE: Server protocols initialized / Client not connected yet")
 
 def reset_resolution():
     state.resolution = 6
 
 {%- if cookiecutter.include_components %}
 def widget_click():
-    print(">>> ENGINE: Widget Click")
+    logger.info(">>> ENGINE: Widget Click")
 
 def widget_change():
-    print(">>> ENGINE: Widget Change")
+    logger.info(">>> ENGINE: Widget Change")
 
 {%- endif %}
 
@@ -31,4 +36,4 @@ def widget_change():
 
 @state.change("resolution")
 def resolution_changed(resolution, **kwargs):
-    print(f">>> ENGINE: Slider updating resolution to {resolution}")
+    logger.info(f">>> ENGINE: Slider updating resolution to {resolution}")
