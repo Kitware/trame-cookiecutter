@@ -24,7 +24,7 @@ def run_in_loop(**kwargs):
 
         # Start up trame
         controller.on_start()
-        ui.layout.start(exec_mode="task", server=True)
+        ui.layout.start(exec_mode="task", server=True, port=0)
 
         FIRST_RUN = False
 
