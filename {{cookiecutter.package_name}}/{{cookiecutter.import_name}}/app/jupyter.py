@@ -13,8 +13,16 @@ def show(server = None, **kwargs):
     if isinstance(server, str):
         server = get_server(server)
 
+    # Disable logging
+    import logging
+    engine_logger = logging.getLogger("{{cookiecutter.import_name}}.app.engine")
+    engine_logger.setLevel(logging.WARNING)
+
+    # Initilize app
     engine.initialize(server)
     ui.initialize(server)
+
+    # Show as cell result
     jupyter.show(server, **kwargs)
 
 

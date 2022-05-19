@@ -27,3 +27,6 @@ if not {{ cookiecutter.include_app }}:
     remove_dir('{{ cookiecutter.import_name }}/app')
     remove_dir('bundles')
     remove_dir('examples')
+
+if not {{ cookiecutter.is_trame_component }}:
+    remove_dir('trame')

@@ -31,6 +31,7 @@ class MyBusinessLogic:
         logger.info(f">>> ENGINE(a): Slider updating resolution to {resolution}")
 
 {%- if cookiecutter.include_components %}
+
     def widget_click(self):
         logger.info(">>> ENGINE(a): Widget Click")
 
