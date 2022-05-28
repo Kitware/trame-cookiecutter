@@ -10,8 +10,7 @@ serve = {"__{{cookiecutter.import_name}}": serve_path}
 scripts = ["__{{cookiecutter.import_name}}/vue-{{cookiecutter.import_name}}.umd.min.js"]
 
 # List of CSS files to load (usually from the serve path above)
-# Uncomment to add styles
-# styles = ["__{{cookiecutter.import_name}}/vue-{{cookiecutter.import_name}}.css"]
+styles = ["__{{cookiecutter.import_name}}/vue-{{cookiecutter.import_name}}.css"]
 
 vuetify_config = {}
 
