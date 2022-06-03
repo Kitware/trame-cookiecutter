@@ -6,27 +6,43 @@ import shutil
 PROJECT_DIRECTORY = Path.cwd()
 
 
-def remove_file(filepath):
-    Path(filepath).unlink()
+def remove_files(*paths):
+    for path in paths:
+        Path(path).unlink()
 
-
-def remove_dir(filepath):
-    shutil.rmtree(filepath)
+def remove_dirs(*paths):
+    for path in paths:
+        shutil.rmtree(path)
 
 
 if not {{ cookiecutter.is_known_license }}:
-    remove_file('LICENSE')
+    remove_files('LICENSE')
 
 if not {{ cookiecutter.include_components }}:
-    remove_dir('{{ cookiecutter.import_name }}/module')
-    remove_dir('{{ cookiecutter.import_name }}/widgets')
-    remove_dir('vue-components')
-    remove_file('MANIFEST.in')
+    remove_dirs(
+        '{{ cookiecutter.import_name }}/module',
+        '{{ cookiecutter.import_name }}/widgets',
+        'vue-components',
+    )
+    remove_files('MANIFEST.in')
 
 if not {{ cookiecutter.include_app }}:
-    remove_dir('{{ cookiecutter.import_name }}/app')
-    remove_dir('bundles')
-    remove_dir('examples')
+    remove_dirs(
+        '{{ cookiecutter.import_name }}/app',
+        'bundles',
+        'examples',
+    )
 
-if not {{ cookiecutter.is_trame_component }}:
-    remove_dir('trame')
+if not {{ cookiecutter.include_components_only }}:
+    remove_dirs('trame')
+
+if not {{ cookiecutter.include_ci }}:
+    remove_dirs(
+        '.github',
+        'tests',
+    )
+    remove_files(
+        '.codespellrc',
+        '.flake8',
+        '.pre-commit-config.yaml',
+    )

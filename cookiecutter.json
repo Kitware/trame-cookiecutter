@@ -4,6 +4,7 @@
     "author": "Trame Developer",
     "short_description": "An example Trame application",
     "license": ["BSD License", "MIT License", "ISC License (ISCL)", "Apache Software License", "GNU General Public License v3 (GPLv3)", "Other"],
+    "include_continuous_integration": "y",
     "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
     "import_name": "{{ cookiecutter.package_name.lower().replace('-', '_') }}"
 }

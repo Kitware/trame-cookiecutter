@@ -28,5 +28,6 @@ if not re.match(MODULE_REGEX, import_name):
     'is_open_source': cookiecutter.license != 'Other',
     'include_app': cookiecutter.project_type != 'Components',
     'include_components': cookiecutter.project_type != 'App',
-    'is_trame_component': cookiecutter.project_type == 'Components',
+    'include_components_only': cookiecutter.project_type == 'Components',
+    'include_ci': cookiecutter.include_continuous_integration == 'y',
 }) %}
