@@ -10,6 +10,7 @@ logger.setLevel(logging.INFO)
 # Engine class
 # ---------------------------------------------------------
 
+
 class MyBusinessLogic:
     def __init__(self, server):
         self._server = server
@@ -40,9 +41,11 @@ class MyBusinessLogic:
 
 {%- endif %}
 
+
 # ---------------------------------------------------------
 # Server binding
 # ---------------------------------------------------------
+
 
 def initialize(server):
     state, ctrl = server.state, server.controller

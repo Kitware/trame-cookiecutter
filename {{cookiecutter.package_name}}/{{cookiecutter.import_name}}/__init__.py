@@ -4,4 +4,4 @@ from .app import main
 __all__ = [
     "main",
 ]
-{%- endif %}
+{%- endif -%}

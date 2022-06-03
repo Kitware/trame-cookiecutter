@@ -2,7 +2,7 @@ from trame.app import get_server, jupyter
 from {{cookiecutter.import_name}}.app import engine, ui
 
 
-def show(server = None, **kwargs):
+def show(server=None, **kwargs):
     """Run and display the trame application in jupyter's event loop
 
     The kwargs are forwarded to IPython.display.IFrame()
@@ -15,10 +15,11 @@ def show(server = None, **kwargs):
 
     # Disable logging
     import logging
+
     engine_logger = logging.getLogger("{{cookiecutter.import_name}}.app.engine")
     engine_logger.setLevel(logging.WARNING)
 
-    # Initilize app
+    # Initialize app
     engine.initialize(server)
     ui.initialize(server)
 
@@ -34,5 +35,5 @@ def jupyter_proxy_info():
     process.
     """
     return {
-        'command': ['{{cookiecutter.entry_point}}', '-p', '0', '--server'],
+        "command": ["{{cookiecutter.entry_point}}", "-p", "0", "--server"],
     }
