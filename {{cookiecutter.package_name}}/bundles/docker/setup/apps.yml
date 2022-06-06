@@ -1,4 +1,8 @@
 trame: # Default app under /index.html
+{%- if cookiecutter.include_app and cookiecutter.include_components %}
+  www_modules:
+    - {{cookiecutter.import_name}}.module
+{%- endif %}
   app: {{cookiecutter.entry_point}}
 {{cookiecutter.package_name}}: # /{{cookiecutter.package_name}}.html
   app: {{cookiecutter.entry_point}}
