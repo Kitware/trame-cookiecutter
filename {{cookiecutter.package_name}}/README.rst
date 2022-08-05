@@ -34,7 +34,7 @@ Run the application
 
 .. code-block:: console
 
-    {{ cookiecutter.import_name }}
+    {{ cookiecutter.entry_point }}
 
 {%- endif %}
 
