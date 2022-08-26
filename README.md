@@ -98,7 +98,7 @@ The structure produced by this Cookiecutter template contains the following item
 * **project_type [App]:** Project type described in more detail above
 * **author:** Used for your package definition (setup.cfg)
 * **short_description:** Used for your package definition (setup.cfg)
-* **license [BSD]:** Used for your package definition (setup.cfg+LICENSE)
-* **include_continuous_integration:** Create Github actions with Python quality control validation
+* **license [BSD]:** Used for your package definition (setup.cfg + LICENSE)
+* **include_continuous_integration:** Create Github actions with Python quality control validation (.*)
 * **package_name:** Application name to use for `pip install` or application execution
 * **import_name:** Physical name of the root directory of your application/library
