@@ -65,7 +65,6 @@ The **project_type** can be only one of the following options:
 The structure produced by this Cookiecutter template contains the following items:
 
 ```
-.
 ├── .*                         # (Continuous integration option) Python quality control + Github actions
 ├── CONTRIBUTING.rst           # Minimal content for project contribution
 ├── LICENSE                    # Selected license
@@ -77,7 +76,7 @@ The structure produced by this Cookiecutter template contains the following item
 │   │   └── windows/*              # On Windows
 │   └── docker/*                 # How to create docker image for cloud service deployment
 ├── examples                   # (App option) Usage example of your application
-│   └── jupyter                  # Inside a Jupyter notebook
+│   └── jupyter/*                # Notebook to use inside Jupyter
 ├── setup.cfg                  # Configuration file for your Python package
 ├── setup.py                   # Python package entry point
 ├── tests/*                    # Testing infrastructure
@@ -95,11 +94,11 @@ The structure produced by this Cookiecutter template contains the following item
 
 ### Configuration options
 
-* project_name [Trame App]: Human readable name for your application
-* project_type [App]: Project type described in more detail above
-* author            : Used for your package definition (setup.cfg)
-* short_description : Used for your package definition (setup.cfg)
-* license [BSD]     : Used for your package definition (setup.cfg+LICENSE)
-* include_continuous_integration: Create Github actions with Python quality control validation
-* package_name      : Application name to use for `pip install` or application execution
-* import_name       : Physical name of the root directory of your application/library
+* **project_name [Trame App]:** Human readable name for your application
+* **project_type [App]:** Project type described in more detail above
+* **author:** Used for your package definition (setup.cfg)
+* **short_description:** Used for your package definition (setup.cfg)
+* **license [BSD]:** Used for your package definition (setup.cfg+LICENSE)
+* **include_continuous_integration:** Create Github actions with Python quality control validation
+* **package_name:** Application name to use for `pip install` or application execution
+* **import_name:** Physical name of the root directory of your application/library
