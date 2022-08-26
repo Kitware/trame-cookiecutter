@@ -146,17 +146,23 @@ Then you can run it using your browser with the following command line:
 visualis
 ```
 
+![Standard execution with auto browser open](https://github.com/Kitware/trame-cookiecutter/blob/master/docs/browser.jpg?raw=true)
+
 Or show it as a desktop application with the following command line:
 
 ```bash
 visualis --app
 ```
 
+![Desktop Application mode](https://github.com/Kitware/trame-cookiecutter/blob/master/docs/app.jpg?raw=true)
+
 Or with Jupyter
 
 ```bash
 jupyter-lab
 ```
+
+![Jupyter Notebook Example](https://github.com/Kitware/trame-cookiecutter/blob/master/docs/jupyter.jpg?raw=true)
 
 And if you have docker
 
