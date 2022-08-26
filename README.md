@@ -102,3 +102,67 @@ The structure produced by this Cookiecutter template contains the following item
 * **include_continuous_integration:** Create Github actions with Python quality control validation (.*)
 * **package_name:** Application name to use for `pip install` or application execution
 * **import_name:** Physical name of the root directory of your application/library
+
+### Usage example
+
+```bash
+$ python3 -m venv .venv
+$ source ./.venv/bin/activate
+$ python -m pip install --upgrade pip
+$ pip install cookiecutter
+
+$ cookiecutter gh:kitware/trame-cookiecutter
+
+    project_name [Trame App]: Visualis
+    Select project_type:
+    1 - App
+    2 - App with Components
+    3 - Components
+    Choose from 1, 2, 3 [1]:
+    author [Trame Developer]: Kitware Inc.
+    short_description [An example Trame application]: VTK viewer for 3d stuff
+    Select license:
+    1 - BSD License
+    2 - MIT License
+    3 - ISC License (ISCL)
+    4 - Apache Software License
+    5 - GNU General Public License v3 (GPLv3)
+    6 - Other
+    Choose from 1, 2, 3, 4, 5, 6 [1]: 4
+    include_continuous_integration [y]: n
+    package_name [visualis]:
+    import_name [visualis]:
+
+cd visualis
+pip install . # Install your new application
+
+pip install pywebview  # For app usage
+pip install jupyterlab # For Jupyter usage
+```
+
+Then you can run it using your browser with the following command line:
+
+```bash
+visualis
+```
+
+Or show it as a desktop application with the following command line:
+
+```bash
+visualis --app
+```
+
+Or with Jupyter
+
+```bash
+jupyter-lab
+```
+
+And if you have docker
+
+```bash
+cd bundles/docker
+./scripts/build_image.sh
+./scripts/run_image.sh
+#> open http://localhost:8080/
+```
