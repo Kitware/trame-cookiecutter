@@ -34,14 +34,25 @@ To do that go in: __CapRover > Settings > NGINX Configurations > /etc/nginx/conf
         client_max_body_size 500m;
 ```
 
-For GPU access you will need to go to your __CapRover > Apps > {App Name} > App Configs__ and edit __Service Update Override__ with the following content.
+For GPU access you will need to create a `/etc/docker/daemon.json` with the following content where `GPU-f0ada461` come from the command line below
 
-```yaml
-TaskTemplate:
-    Resources:
-        Reservations:
-            GenericResources:
-                NamedResourceSpec:
-                    Kind: GPU
-                    Value: UUID1
+```bash
+nvidia-smi -a | grep GPU-UUID
+    GPU UUID                              : GPU-f0ada461-5941-6211-dad3-a5003817fb59
+```
+
+=> `/etc/docker/daemon.json`
+```json
+{
+  "runtimes": {
+    "nvidia": {
+      "path": "/usr/bin/nvidia-container-runtime",
+      "runtimeArgs": []
+    }
+  },
+  "default-runtime": "nvidia",
+  "node-generic-resources": [
+    "NVIDIA-GPU=GPU-f0ada461"
+    ]
+}
 ```
