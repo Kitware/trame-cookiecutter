@@ -42,7 +42,7 @@ def initialize(server):
                     ctrl.reset_camera = vtk_view.reset_camera  # Bind method to controller
                     with vtk.VtkGeometryRepresentation():      # Add representation to vtk.js view
                         vtk.VtkAlgorithm(                      # Add ConeSource to representation
-                            vtkClass="vtkConeSource",          # Set attribute value with no JS eval
+                            vtk_class="vtkConeSource",          # Set attribute value with no JS eval
                             state=("{ resolution }",)          # Set attribute value with JS eval
                         )
 
