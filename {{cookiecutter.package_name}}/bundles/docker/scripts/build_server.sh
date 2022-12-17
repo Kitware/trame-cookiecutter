@@ -11,7 +11,6 @@ ROOT_DIR=$PWD
 popd > /dev/null
 
 docker run --rm          \
-    -e TRAME_BUILD_ONLY=1 \
     -v "$DEPLOY_DIR:/deploy" \
     -v "$ROOT_DIR:/local-app"  \
-    kitware/trame
+    kitware/trame build
