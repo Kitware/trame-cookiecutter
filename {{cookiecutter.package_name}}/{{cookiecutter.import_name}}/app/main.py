@@ -1,11 +1,5 @@
-from trame.app import get_server, dev
-from . import engine, ui
-
-
-def _reload():
-    server = get_server()
-    dev.reload(ui)
-    ui.initialize(server)
+from trame.app import get_server
+from .core import Engine
 
 
 def main(server=None, **kwargs):
@@ -16,12 +10,8 @@ def main(server=None, **kwargs):
     if isinstance(server, str):
         server = get_server(server)
 
-    # Make UI auto reload
-    server.controller.on_server_reload.add(_reload)
-
     # Init application
-    engine.initialize(server)
-    ui.initialize(server)
+    Engine(server)
 
     # Start server
     server.start(**kwargs)
