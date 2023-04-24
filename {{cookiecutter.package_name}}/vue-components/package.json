@@ -2,29 +2,35 @@
   "name": "vue-{{cookiecutter.import_name}}",
   "private": true,
   "version": "0.0.0",
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "2.6.11"
+  "main": "./dist/{{cookiecutter.import_name}}.umd.js",
+  "unpkg": "./dist/{{cookiecutter.import_name}}.umd.js",
+  "module": "./dist/{{cookiecutter.import_name}}.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/{{cookiecutter.import_name}}.mjs",
+      "require": "./dist/{{cookiecutter.import_name}}.umd.js"
+    }
   },
   "scripts": {
-    "serve:CustomWidget": "vue-cli-service serve src/tests/CustomWidget/main.js",
-    "build": "vue-cli-service build --target lib --name {{cookiecutter.import_name}} --filename vue-{{cookiecutter.import_name}} src/use.js",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore --ignore-pattern public",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "vue": "^2.7.0 || >=3.0.0"
   },
   "devDependencies": {
-    "@mdi/font": "^6.3.95",
-    "typeface-roboto": "^1.1.13",
-    "vuetify": "^2.5.10",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-vue": "^6.2.2",
-    "prettier": "^1.19.1",
-    "vue-template-compiler": "2.6.11"
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "eslint": "^8.33.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "prettier": "^2.7.1",
+    "semantic-release": "19.0.2",
+    "vite": "^4.1.0",
+    "vue": "^3.0.0"
   },
   "files": [
     "dist/*",
