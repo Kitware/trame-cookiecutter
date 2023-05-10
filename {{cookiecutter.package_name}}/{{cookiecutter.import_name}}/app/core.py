@@ -58,10 +58,10 @@ class Engine:
     @property
     def ctrl(self):
         return self.server.controller
-    
+
     def show_in_jupyter(self, **kwargs):
         from trame.app import jupyter
-        
+
         logger.setLevel(logging.WARNING)
         jupyter.show(self._server, **kwargs)
 
@@ -120,3 +120,14 @@ class Engine:
 
             # Footer
             # layout.footer.hide()
+
+
+def create_engine(server=None):
+    # Get or create server
+    if server is None:
+        server = get_server()
+
+    if isinstance(server, str):
+        server = get_server(server)
+
+    return Engine(server)

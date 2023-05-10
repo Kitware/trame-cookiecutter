@@ -1,3 +1,5 @@
+from .core import create_engine
+
 def jupyter_proxy_info():
     """Get the config to run the trame application via jupyter's server proxy
 
@@ -8,3 +10,9 @@ def jupyter_proxy_info():
     return {
         "command": ["{{cookiecutter.entry_point}}", "-p", "0", "--server"],
     }
+
+
+def show(server=None, **kwargs):
+    """Show application into a Jupyter cell"""
+    app = create_engine(server)
+    app.show_in_jupyter(**kwargs)
