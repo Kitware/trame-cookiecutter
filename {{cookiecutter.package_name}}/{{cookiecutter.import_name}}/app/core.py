@@ -63,7 +63,7 @@ class Engine:
         from trame.app import jupyter
 
         logger.setLevel(logging.WARNING)
-        jupyter.show(self._server, **kwargs)
+        jupyter.show(self.server, **kwargs)
 
 
     def reset_resolution(self):
