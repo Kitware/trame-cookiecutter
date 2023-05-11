@@ -33,6 +33,7 @@ After running `pyinstaller`, the standalone application may be found inside the 
 ```bash
 pip install -r ./requirements.txt
 ./create_mac.sh
+open ./dist/run.app
 ```
 
 ## Linux
@@ -40,6 +41,7 @@ pip install -r ./requirements.txt
 ```bash
 pip install -r ./requirements.txt
 ./create_linux.sh
+./dist/run
 ```
 
 ## Windows
@@ -47,4 +49,5 @@ pip install -r ./requirements.txt
 ```bash
 pip install -r requirements.txt
 ./create_exe.bat
+./dist/run/run.exe
 ```
