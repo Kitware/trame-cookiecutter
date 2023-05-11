@@ -1,6 +1,8 @@
-# Desktop bundle for Windows
+# Desktop
 
 This relies on [pyinstaller](https://pyinstaller.org/en/stable/) to bundle your trame application into a standalone desktop application.
+
+In our current setup, we'll rely on the current virtual environment to provide the code content.
 
 ## Building the bundle
 
@@ -25,3 +27,24 @@ Note: if you are debugging your `pyinstaller` application, consider removing thi
 5. `--icon {{cookiecutter.package_name}}.ico`: the icon file to use for the application.
 
 After running `pyinstaller`, the standalone application may be found inside the `dist` directory that is created.
+
+## MacOS
+
+```bash
+pip install -r ./requirements.txt
+./create_mac.sh
+```
+
+## Linux
+
+```bash
+pip install -r ./requirements.txt
+./create_linux.sh
+```
+
+## Windows
+
+```bash
+pip install -r requirements.txt
+./create_exe.bat
+```
