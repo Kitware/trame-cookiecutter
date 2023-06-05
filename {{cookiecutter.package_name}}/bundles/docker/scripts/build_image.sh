@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 CURRENT_DIR=`dirname "$0"`
 
-cd $CURRENT_DIR
-BASE_PATH="$PWD"
+cd $CURRENT_DIR/..
+DEPLOY_DIR="$PWD"
 
-. ./build_server.sh
+. scripts/build_server.sh
 
-cd "$BASE_PATH/.."
+cd "$DEPLOY_DIR"
 docker build -t {{cookiecutter.entry_point}} .
