@@ -7,7 +7,10 @@ class HtmlElement(AbstractElement):
         super().__init__(_elem_name, children, **kwargs)
         if self.server:
             self.server.enable_module(module)
-
+            
+__all__ = [
+    "CustomWidget",
+]
 
 # Expose your vue component(s)
 class CustomWidget(HtmlElement):

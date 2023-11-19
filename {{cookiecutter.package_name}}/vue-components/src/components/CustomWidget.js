@@ -1,4 +1,5 @@
 export default {
+    emits: ["click", "change"],
     props: {
       attribute_name: {
         type: String,
@@ -7,18 +8,18 @@ export default {
         type: String,
       },
     },
-    setup() {
+    setup(props, { emit }) {
         const btnClick = "margin: 0 10px;background: #F48FB1 !important;";
         const btnChange = "margin: 0 10px;#CE93D8 !important;";
-        return {btnClick, btnChange};
-    },
-    methods: {
-      triggerClick() {
-        this.$emit('click');
-      },
-      triggerChange() {
-        this.$emit('change');
-      },
+        const triggerClick = () => emit("click");
+        const triggerChange = () => emit("change");
+
+        return {
+          btnClick, 
+          btnChange, 
+          triggerClick, 
+          triggerChange,
+        };
     },
     template: `
         <div>
