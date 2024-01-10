@@ -7,6 +7,7 @@ cd ../..
 ROOT_DIR="$PWD"
 
 docker run --rm          \
+    -e TRAME_CLIENT_TYPE=vue3 \
     -v "$DEPLOY_DIR:/deploy" \
     -v "$ROOT_DIR:/local-app"  \
     kitware/trame build
