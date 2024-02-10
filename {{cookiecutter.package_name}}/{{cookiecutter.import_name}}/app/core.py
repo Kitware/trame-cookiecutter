@@ -1,6 +1,6 @@
 
 from trame.app import get_server
-from trame.decorators import TrameApp, change, controller, life_cycle
+from trame.decorators import TrameApp, change, controller
 from trame.ui.vuetify3 import SinglePageLayout
 from trame.widgets import vuetify3, vtk
 {%- if cookiecutter.include_components %}
@@ -16,6 +16,8 @@ from {{cookiecutter.import_name}}.widgets import {{cookiecutter.import_name}} as
 class MyTrameApp:
     def __init__(self, server=None):
         self.server = get_server(server, client_type="vue3")
+        if self.server.hot_reload:
+            self.server.controller.on_server_reload.add(self._build_ui)
         self.ui = self._build_ui()
 
         # Set state variable
@@ -50,8 +52,7 @@ class MyTrameApp:
 
 {%- endif %}
 
-    @life_cycle.server_reload
-    def _build_ui(self, **kwargs):
+    def _build_ui(self, *args, **kwargs):
         with SinglePageLayout(self.server) as layout:
             # Toolbar
             layout.title.set_text("Trame / vtk.js")
