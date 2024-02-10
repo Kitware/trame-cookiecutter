@@ -69,7 +69,7 @@ class MyTrameApp:
 {%- endif %}
                 vuetify3.VSlider(                    # Add slider
                     v_model=("resolution", 6),      # bind variable with an initial value of 6
-                    min=3, max=60,                  # slider range
+                    min=3, max=60, step=1,          # slider range
                     dense=True, hide_details=True,  # presentation setup
                 )
                 with vuetify3.VBtn(icon=True, click=self.ctrl.reset_camera):
