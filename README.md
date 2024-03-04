@@ -105,6 +105,8 @@ The structure produced by this Cookiecutter template contains the following item
 
 ### Usage example
 
+__Caution__: If you don't keep the same options, please look at the generated README to properly capture the specificity of your setup.
+
 ```bash
 $ python3 -m venv .venv
 $ source ./.venv/bin/activate
