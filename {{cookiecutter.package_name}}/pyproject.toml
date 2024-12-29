@@ -41,6 +41,7 @@ jupyter = [
     "jupyterlab",
 ]
 dev = [
+    "pre-commit",
     "ruff",
     "pytest",
 ]
