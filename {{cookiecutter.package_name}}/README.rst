@@ -27,7 +27,7 @@ Install the application
 
 .. code-block:: console
 
-    pip install -e .
+    pip install -e ".[dev]"
 
 {% if cookiecutter.include_app %}
 Run the application

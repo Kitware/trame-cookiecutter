@@ -1,4 +1,3 @@
-
 from trame.app import get_server
 from trame.decorators import TrameApp, change, controller
 from trame.ui.vuetify3 import SinglePageLayout
