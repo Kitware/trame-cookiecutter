@@ -1,6 +1,6 @@
 def test_import():
 {%- if cookiecutter.include_app %}
-    from {{ cookiecutter.import_name }} import main  # noqa: F401
+    from {{ cookiecutter.import_name }}.app import main  # noqa: F401
 {%- endif %}
 {%- if cookiecutter.include_components %}
     from {{ cookiecutter.import_name }}.widgets.{{ cookiecutter.import_name }} import CustomWidget  # noqa: F401
