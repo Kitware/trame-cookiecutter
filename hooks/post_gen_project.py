@@ -43,6 +43,5 @@ if not {{ cookiecutter.include_ci }}:
     )
     remove_files(
         '.codespellrc',
-        '.flake8',
         '.pre-commit-config.yaml',
     )
