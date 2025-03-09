@@ -20,21 +20,21 @@ if not {{ cookiecutter.is_known_license }}:
 
 if not {{ cookiecutter.include_components }}:
     remove_dirs(
-        '{{ cookiecutter.import_name }}/module',
-        '{{ cookiecutter.import_name }}/widgets',
+        'src/{{ cookiecutter.import_name }}/module',
+        'src/{{ cookiecutter.import_name }}/widgets',
         'vue-components',
     )
     remove_files('MANIFEST.in')
 
 if not {{ cookiecutter.include_app }}:
     remove_dirs(
-        '{{ cookiecutter.import_name }}/app',
+        'src/{{ cookiecutter.import_name }}/app',
         'bundles',
         'examples',
     )
 
 if not {{ cookiecutter.include_components_only }}:
-    remove_dirs('trame')
+    remove_dirs('src/trame')
 
 if not {{ cookiecutter.include_ci }}:
     remove_dirs(

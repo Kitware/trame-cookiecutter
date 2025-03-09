@@ -15,7 +15,7 @@ export default {
         },
       },
     },
-    outDir: "../{{cookiecutter.import_name}}/module/serve",
+    outDir: "../src/{{cookiecutter.import_name}}/module/serve",
     assetsDir: ".",
   },
 };

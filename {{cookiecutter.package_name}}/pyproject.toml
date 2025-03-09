@@ -43,7 +43,9 @@ jupyter = [
 dev = [
     "pre-commit",
     "ruff",
-    "pytest",
+    "pytest >=6",
+    "pytest-cov >=3",
+    "nox",
 ]
 {%- if cookiecutter.include_app %}
 
@@ -52,26 +54,75 @@ dev = [
 {%- endif %}
 
 [build-system]
-requires = ['setuptools', 'wheel']
-build-backend = 'setuptools.build_meta'
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools.packages.find]
-where = ["."]
 
-[tool.setuptools.package-data]
-{{cookiecutter.import_name}} = [
-    "**/*.js",
-    "**/*.css",
+[tool.hatch.build]
+include = [
+{%- if cookiecutter.include_components_only %}
+  "/src/trame/**/*.py",
+{%- endif %}
+  "/src/{{cookiecutter.import_name}}/**/*.py",
+  "/src/{{cookiecutter.import_name}}/**/*.js",
+  "/src/{{cookiecutter.import_name}}/**/*.css",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = [
+{%- if cookiecutter.include_components_only %}
+    "src/trame",
+{%- endif %}
+    "/src/{{cookiecutter.import_name}}",
+]
+
+[tool.ruff]
+
+[tool.ruff.lint]
+extend-select = [
+  "ARG",      # flake8-unused-arguments
+  "B",        # flake8-bugbear
+  "C4",       # flake8-comprehensions
+  "EM",       # flake8-errmsg
+  "EXE",      # flake8-executable
+  "G",        # flake8-logging-format
+  "I",        # isort
+  "ICN",      # flake8-import-conventions
+  "NPY",      # NumPy specific rules
+  "PD",       # pandas-vet
+  "PGH",      # pygrep-hooks
+  "PIE",      # flake8-pie
+  "PL",       # pylint
+  "PT",       # flake8-pytest-style
+  "PTH",      # flake8-use-pathlib
+  "RET",      # flake8-return
+  "RUF",      # Ruff-specific
+  "SIM",      # flake8-simplify
+  "T20",      # flake8-print
+  "UP",       # pyupgrade
+  "YTT",      # flake8-2020
+]
+ignore = [
+  "PLR09",    # Too many <...>
+  "PLR2004",  # Magic value used in comparison
+  "ISC001",   # Conflicts with formatter
+]
+isort.required-imports = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["T20"]
+"noxfile.py" = ["T20"]
+"src/**" = ["SIM117"]
 
 {%- if cookiecutter.include_ci %}
 [tool.semantic_release]
-version_variables = [
-    "{{cookiecutter.import_name}}/__init__.py:__version__",
-]
 version_toml = [
     "pyproject.toml:project.version",
 ]
+version_variables = [
+    "src/{{cookiecutter.import_name}}/__init__.py:__version__",
+]
+
 build_command = """
   python -m venv .venv
   source .venv/bin/activate
@@ -83,32 +134,3 @@ build_command = """
 dist_glob_patterns = ["dist/*"]
 upload_to_vcs_release = true
 {%- endif %}
-
-[tool.ruff]
-line-length = 88
-indent-width = 4
-target-version = "py39"
-
-[tool.ruff.lint]
-select = ["E", "W", "F"]
-ignore = []
-fixable = ["ALL"]
-unfixable = []
-
-
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-skip-magic-trailing-comma = false
-line-ending = "auto"
-docstring-code-format = true
-
-# This only has an effect when the `docstring-code-format` setting is
-# enabled.
-docstring-code-line-length = "dynamic"
-
-[tool.ruff.lint.pycodestyle]
-max-line-length = 120
-
-[lint.pydocstyle]
-convention = "google"

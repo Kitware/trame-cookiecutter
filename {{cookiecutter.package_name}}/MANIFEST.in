@@ -1,1 +1,1 @@
-graft {{ cookiecutter.import_name }}/module/serve
+graft src/{{ cookiecutter.import_name }}/module/serve
