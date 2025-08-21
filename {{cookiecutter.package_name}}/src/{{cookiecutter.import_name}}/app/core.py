@@ -1,9 +1,9 @@
-from trame.app import get_server
-from trame.decorators import TrameApp, change, controller
+from trame.app import TrameApp
+from trame.decorators import change, controller
 from trame.ui.vuetify3 import SinglePageLayout
 from trame.widgets import vuetify3, vtk
 {%- if cookiecutter.include_components %}
-from {{cookiecutter.import_name}}.widgets import {{cookiecutter.import_name}} as my_widgets
+from {{cookiecutter.import_name}}.widgets import {{cookiecutter.module_short_name}} as my_widgets
 {%- endif %}
 
 
@@ -11,25 +11,20 @@ from {{cookiecutter.import_name}}.widgets import {{cookiecutter.import_name}} as
 # Engine class
 # ---------------------------------------------------------
 
-@TrameApp()
-class MyTrameApp:
+class MyTrameApp(TrameApp):
     def __init__(self, server=None):
-        self.server = get_server(server, client_type="vue3")
+        super().__init__(server, client_type="vue3")
+
+        # --hot-reload arg optional logic
         if self.server.hot_reload:
             self.server.controller.on_server_reload.add(self._build_ui)
-        self.ui = self._build_ui()
 
         # Set state variable
         self.state.trame__title = "{{cookiecutter.project_name}}"
         self.state.resolution = 6
 
-    @property
-    def state(self):
-        return self.server.state
-
-    @property
-    def ctrl(self):
-        return self.server.controller
+        # build ui
+        self._build_ui()
 
     @controller.set("reset_resolution")
     def reset_resolution(self):
@@ -52,10 +47,10 @@ class MyTrameApp:
 {%- endif %}
 
     def _build_ui(self, *args, **kwargs):
-        with SinglePageLayout(self.server) as layout:
+        with SinglePageLayout(self.server) as self.ui:
             # Toolbar
-            layout.title.set_text("Trame / vtk.js")
-            with layout.toolbar:
+            self.ui.title.set_text("Trame / vtk.js")
+            with self.ui.toolbar:
                 vuetify3.VSpacer()
 {%- if cookiecutter.include_components %}
                 my_widgets.CustomWidget(
@@ -77,7 +72,7 @@ class MyTrameApp:
                     vuetify3.VIcon("mdi-undo")
 
             # Main content
-            with layout.content:
+            with self.ui.content:
                 with vuetify3.VContainer(fluid=True, classes="pa-0 fill-height"):
                     with vtk.VtkView() as vtk_view:                # vtk.js view for local rendering
                         self.ctrl.reset_camera = vtk_view.reset_camera  # Bind method to controller
@@ -89,5 +84,3 @@ class MyTrameApp:
 
             # Footer
             # layout.footer.hide()
-
-            return layout

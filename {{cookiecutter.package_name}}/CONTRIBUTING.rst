@@ -6,6 +6,7 @@ Contributing to {{ cookiecutter.project_name }}
 {%- if cookiecutter.include_ci %}
 #. Install pre-commit via ``pip install pre-commit``
 #. Run ``pre-commit install`` to set up pre-commit hooks
+#. Run ``pre-commit install --hook-type commit-msg`` to register commit-msg hook
 {%- endif %}
 #. Make changes to the code, and commit your changes to a separate branch
 #. Create a fork of the repository on GitHub

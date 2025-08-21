@@ -1,4 +1,4 @@
-from {{cookiecutter.import_name}}.widgets.{{cookiecutter.import_name}} import *
+from {{cookiecutter.import_name}}.widgets.{{cookiecutter.module_short_name}} import *
 
 
 def initialize(server):

@@ -10,7 +10,8 @@ serve = {"__{{cookiecutter.import_name}}": serve_path}
 scripts = ["__{{cookiecutter.import_name}}/{{cookiecutter.import_name}}.umd.js"]
 
 # List of CSS files to load (usually from the serve path above)
-# styles = ["__{{cookiecutter.import_name}}/style.css"]
+if (Path(serve_path) / "style.css").exists():
+    styles = ["__{{cookiecutter.import_name}}/style.css"]
 
 # List of Vue plugins to install/load
 vue_use = ["{{cookiecutter.import_name}}"]

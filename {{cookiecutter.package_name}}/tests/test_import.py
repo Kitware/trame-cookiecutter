@@ -3,7 +3,7 @@ def test_import():
     from {{ cookiecutter.import_name }}.app import main  # noqa: F401
 {%- endif %}
 {%- if cookiecutter.include_components %}
-    from {{ cookiecutter.import_name }}.widgets.{{ cookiecutter.import_name }} import CustomWidget  # noqa: F401
+    from {{ cookiecutter.import_name }}.widgets.{{ cookiecutter.module_short_name }} import CustomWidget  # noqa: F401
 {%- endif %}
 {%- if cookiecutter.include_components_only %}
 

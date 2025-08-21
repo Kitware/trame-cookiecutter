@@ -24,7 +24,6 @@ if not {{ cookiecutter.include_components }}:
         'src/{{ cookiecutter.import_name }}/widgets',
         'vue-components',
     )
-    remove_files('MANIFEST.in')
 
 if not {{ cookiecutter.include_app }}:
     remove_dirs(
@@ -42,6 +41,9 @@ if not {{ cookiecutter.include_ci }}:
         'tests',
     )
     remove_files(
+        'noxfile.py',
+        '.prettierignore',
         '.codespellrc',
+        '.commitlintrc.js',
         '.pre-commit-config.yaml',
     )
