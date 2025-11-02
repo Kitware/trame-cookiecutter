@@ -30,5 +30,5 @@ if not re.match(MODULE_REGEX, import_name):
     'include_components': cookiecutter.project_type != 'App',
     'include_components_only': cookiecutter.project_type == 'Components',
     'include_ci': cookiecutter.include_continuous_integration == 'y',
-    'module_short_name': "_".join(cookiecutter.import_name.split("_")[1:]),
+    'module_short_name': "_".join(cookiecutter.import_name.split("_")[1:]) if cookiecutter.import_name.startswith("trame_") else cookiecutter.import_name,
 }) %}
