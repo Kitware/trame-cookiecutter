@@ -44,8 +44,6 @@ We recommend using uv for setting up and managing a virtual environement for you
     pre-commit install --hook-type commit-msg
 {%- endif %}
 
-    # Allow live code edit
-    uv pip install -e .
 
 {% if cookiecutter.include_components %}
 Build and install the Vue components
