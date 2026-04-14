@@ -31,22 +31,22 @@ class MyTrameApp(TrameApp):
         self.state.resolution = 6
 
     @change("resolution")
-    def on_resolution_change(self, resolution, **kwargs):
-        print(f">>> ENGINE(a): Slider updating resolution to {resolution}")
+    def on_resolution_change(self, resolution, **_kwargs):
+        print(f">>> ENGINE(a): Slider updating resolution to {resolution}") # noqa : T201
 
 {%- if cookiecutter.include_components %}
 
     @controller.set("widget_click")
     def widget_click(self):
-        print(">>> ENGINE(a): Widget Click")
+        print(">>> ENGINE(a): Widget Click") # noqa : T201
 
     @controller.set("widget_change")
     def widget_change(self):
-        print(">>> ENGINE(a): Widget Change")
+        print(">>> ENGINE(a): Widget Change") # noqa : T201
 
 {%- endif %}
 
-    def _build_ui(self, *args, **kwargs):
+    def _build_ui(self, *_args, **_kwargs):
         with SinglePageLayout(self.server) as self.ui:
             # Toolbar
             self.ui.title.set_text("Trame / vtk.js")
