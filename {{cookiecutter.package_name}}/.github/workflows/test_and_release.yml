@@ -10,9 +10,9 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     env:
-      UV_PYTHON: "3.9"
+      UV_PYTHON: "3.12"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9"]
+        python-version: ["3.12"]
         config:
         - {
             name: "Linux",
@@ -56,10 +56,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 {%- raw %}
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install uv
@@ -80,10 +80,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set Up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
 
@@ -110,13 +110,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 {%- if cookiecutter.include_components %}
 
       - name: Set Up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
 
@@ -129,13 +129,19 @@ jobs:
 
       - name: Python Semantic Release
         id: release
-        uses: python-semantic-release/python-semantic-release@master
+        uses: python-semantic-release/python-semantic-release@v10.5.3
         with:
 {%- raw %}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 {%- endraw %}
 
-      # https://docs.pypi.org/trusted-publishers/using-a-publisher/
-      - name: Publish package distributions to PyPI
+
+      - name: Generate artifact attestation for sdist and wheel
         if: steps.release.outputs.released == 'true'
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: actions/attest-build-provenance@v4.1.0
+        with:
+          subject-path: "dist/*"
+
+      # https://docs.pypi.org/trusted-publishers/using-a-publisher/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        if: steps.release.outputs.released == 'true'

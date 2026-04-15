@@ -123,9 +123,14 @@ version_variables = [
     "src/{{cookiecutter.import_name}}/__init__.py:__version__",
 ]
 
-build_command = "uv build"
+build_command = """
+    python -m pip install -e '.[build]'
+    uv lock --upgrade-package "$PACKAGE_NAME"
+    git add uv.lock
+    uv build
+"""
 
-[semantic_release.publish]
+[tool.semantic_release.publish]
 dist_glob_patterns = ["dist/*"]
 upload_to_vcs_release = true
 
