@@ -12,7 +12,8 @@ def remove_files(*paths):
 
 def remove_dirs(*paths):
     for path in paths:
-        shutil.rmtree(path)
+        if Path(path).exists():
+            shutil.rmtree(path)
 
 
 if not {{ cookiecutter.is_known_license }}:
