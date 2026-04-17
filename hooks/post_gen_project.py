@@ -12,8 +12,7 @@ def remove_files(*paths):
 
 def remove_dirs(*paths):
     for path in paths:
-        if Path(path).exists():
-            shutil.rmtree(path)
+        shutil.rmtree(path)
 
 
 if not {{ cookiecutter.is_known_license }}:
@@ -29,7 +28,7 @@ if not {{ cookiecutter.include_components }}:
 if not {{ cookiecutter.include_app }}:
     remove_dirs(
         'src/{{ cookiecutter.import_name }}/app',
-        'bundles',
+        'examples/desktop',
         'examples',
     )
 
