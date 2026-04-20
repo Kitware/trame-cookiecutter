@@ -28,7 +28,7 @@ if not {{ cookiecutter.include_components }}:
 if not {{ cookiecutter.include_app }}:
     remove_dirs(
         'src/{{ cookiecutter.import_name }}/app',
-        'bundles',
+        'examples/desktop',
         'examples',
     )
 
