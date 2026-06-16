@@ -124,9 +124,7 @@ version_variables = [
 ]
 
 build_command = """
-    python -m pip install -e '.[build]'
-    uv lock --upgrade-package "$PACKAGE_NAME"
-    git add uv.lock
+    python -m pip install uv
     uv build
 """
 
