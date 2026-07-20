@@ -5,7 +5,7 @@ ENV TRAME_PYTHON=3.12
 ENV TRAME_CLIENT_TYPE=vue3
 
 # -------------------------------------------------------------------
-# !!! Using path from root diretory !!!
+# !!! Using path from root directory !!!
 # -------------------------------------------------------------------
 # Copy the local app and the deploy directory when using local
 # directory (./setup/initialized.sh) instead of

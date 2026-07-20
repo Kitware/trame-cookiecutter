@@ -110,7 +110,7 @@ ignore = [
 isort.required-imports = []
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["T20"]
+"tests/**" = ["T20", "F401", "PLC0415"]
 "noxfile.py" = ["T20"]
 "src/**" = ["SIM117"]
 

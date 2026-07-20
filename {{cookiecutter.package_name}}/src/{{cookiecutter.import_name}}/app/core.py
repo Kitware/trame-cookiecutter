@@ -1,15 +1,16 @@
 from trame.app import TrameApp
 from trame.decorators import change, controller
 from trame.ui.vuetify3 import SinglePageLayout
-from trame.widgets import vuetify3, vtk
+from trame.widgets import vtk, vuetify3
 {%- if cookiecutter.include_components %}
+
 from {{cookiecutter.import_name}}.widgets import {{cookiecutter.module_short_name}} as my_widgets
 {%- endif %}
-
 
 # ---------------------------------------------------------
 # Engine class
 # ---------------------------------------------------------
+
 
 class MyTrameApp(TrameApp):
     def __init__(self, server=None):
@@ -32,17 +33,17 @@ class MyTrameApp(TrameApp):
 
     @change("resolution")
     def on_resolution_change(self, resolution, **_kwargs):
-        print(f">>> ENGINE(a): Slider updating resolution to {resolution}") # noqa : T201
+        print(f">>> ENGINE(a): Slider updating resolution to {resolution}")  # noqa : T201
 
 {%- if cookiecutter.include_components %}
 
     @controller.set("widget_click")
     def widget_click(self):
-        print(">>> ENGINE(a): Widget Click") # noqa : T201
+        print(">>> ENGINE(a): Widget Click")  # noqa : T201
 
     @controller.set("widget_change")
     def widget_change(self):
-        print(">>> ENGINE(a): Widget Change") # noqa : T201
+        print(">>> ENGINE(a): Widget Change")  # noqa : T201
 
 {%- endif %}
 
@@ -61,11 +62,13 @@ class MyTrameApp(TrameApp):
                 )
                 vuetify3.VSpacer()
 {%- endif %}
+                # fmt: off
                 vuetify3.VSlider(                    # Add slider
                     v_model=("resolution", 6),      # bind variable with an initial value of 6
                     min=3, max=60, step=1,          # slider range
                     dense=True, hide_details=True,  # presentation setup
                 )
+                # fmt: on
                 with vuetify3.VBtn(icon=True, click=self.ctrl.reset_camera):
                     vuetify3.VIcon("mdi-crop-free")
                 with vuetify3.VBtn(icon=True, click=self.reset_resolution):
@@ -74,6 +77,7 @@ class MyTrameApp(TrameApp):
             # Main content
             with self.ui.content:
                 with vuetify3.VContainer(fluid=True, classes="pa-0 fill-height"):
+                    # fmt: off
                     with vtk.VtkView() as vtk_view:                # vtk.js view for local rendering
                         self.ctrl.reset_camera = vtk_view.reset_camera  # Bind method to controller
                         with vtk.VtkGeometryRepresentation():      # Add representation to vtk.js view
@@ -81,6 +85,7 @@ class MyTrameApp(TrameApp):
                                 vtk_class="vtkConeSource",          # Set attribute value with no JS eval
                                 state=("{ resolution }",)          # Set attribute value with JS eval
                             )
+                    # fmt: on
 
             # Footer
             # layout.footer.hide()

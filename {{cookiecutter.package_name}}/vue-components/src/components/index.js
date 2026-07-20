@@ -1,5 +1,5 @@
-import CustomWidget from './CustomWidget';
+import CustomWidget from "./CustomWidget";
 
 export default {
-  '{{ cookiecutter.vue_prefix }}CustomWidget':CustomWidget,
+  {{ cookiecutter.vue_prefix }}CustomWidget: CustomWidget,
 };
