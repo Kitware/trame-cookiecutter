@@ -26,7 +26,7 @@ cookiecutter gh:kitware/trame-cookiecutter
 ## What do you get?
 
 This project contains a Cookiecutter template that helps you create new
-Python 3.6+ package for trame by automatically generating most of the boiler
+Python 3.10+ package for trame by automatically generating most of the boiler
 plate content for you.
 
 The cookiecutter will ask you set of questions to refine what you aim to build
@@ -173,3 +173,98 @@ cd bundles/docker
 ./scripts/run_image.sh
 #> open http://localhost:8080/
 ```
+
+## Publishing the widget or application
+
+In order to publish your repository and make it available to the community, here is the publish
+process checklist.
+
+- [ ] Clean the repository
+- [ ] Publish to [PyPI](https://pypi.org/)
+- [ ] Publish to [conda-forge](https://conda-forge.org/)
+- [ ] Add to the [trame widgets catalog](https://kitware.github.io/trame/guide/intro/widgets.html)
+or [trame applications catalog](https://kitware.github.io/trame/guide/intro/applications.html)
+- [ ] Make a post on the [trame news page](https://kitware.github.io/trame/news.html)
+- [ ] Make a github discussion in the
+[Announcements category](https://github.com/Kitware/trame/discussions/categories/announcements)
+
+### Clean the repository
+
+To encourage contribution and usage make sure the code is clean, create examples and tests, have a clear README with screenshots.
+
+#### GitHub repository
+
+- [ ] Have a preview image in your repository github page, Settings > General > Social preview. The
+image should be at least 640×320px, have 2:1 ratio and 40px padding (rendering might put borders).
+- [ ] Have your About section (from your repository page) such that
+    - [ ] The description is comprehensive 
+    - [ ] You use topics `trame`, `trame-widget` or `trame-app`, `vue2`, `vue3`, `vtk`, `paraview`,
+    `3d-slicer*` if related to those. If actively maintained by Kitware, use the
+    `trame-maintenance-program` topic.
+
+### Publish to PyPI
+
+First you need to register to PyPI, go to [Publishing](https://pypi.org/manage/account/publishing/) and add a pending publisher for your repository.
+
+This cookiecutter already provides a GitHub workflow that publishes to PyPI on each new version.
+Follow the instruction from [the PyPI
+documentation](https://docs.pypi.org/trusted-publishers/using-a-publisher/) if GitHub Actions aren't
+available.
+
+### Publish to conda-forge
+
+Follow the instruction from the [conda-forge
+documentation](https://conda-forge.org/docs/maintainer/adding_pkgs/). If the repository is published
+to PyPI first, publishing to conda-forge is easier.
+
+### Add your widget/application to the trame catalogs
+
+Make a PR on the [trame repository](https://github.com/Kitware/trame) to add an entry to
+[docs/vitepress/external_repos.yml](https://github.com/Kitware/trame/blob/master/docs/vitepress/external_repos.yml).
+
+#### GitHub-hosted repository
+
+```yml
+# ... other repositories
+
+https://github.com/your-username/repo-name: {}
+```
+
+All the information will be fetched from GitHub.
+
+#### Non GitHub-hosted repository
+
+Add information manually, it won't update automatically.
+
+```yml
+# ... other repositories
+
+your-repository-url:
+  topics: [trame, ...] # Follow the rules for topics in GitHub
+  name:                # Your repository name
+  description:         # Comprehensive description of your repository
+  image:               # URL of a preview image for your repository
+  stars:               # Number of stars
+  createdAt:           # Date of creation in the YYYY-MM-DDT00:00:00Z format
+  commitCount:         # Number of commits
+  pullRequestCount:    # Number of pull requests
+  lastCommitDate:      # Date of the last commit in the YYYY-MM-DDT00:00:00Z format
+  lastTimeSeen:        # Today date in the YYYY-MM--DDT00:00:00Z format
+  trusted:             # true only if the repository is owned by Kitware
+```
+
+### Post on the trame news page
+
+Make a PR on the [trame repository](https://github.com/Kitware/trame) to add an entry to
+[docs/vitepress/news.md](https://github.com/Kitware/trame/blob/master/docs/vitepress/news.md) in the following format.
+```md
+## Month DD, YYYY
+
+Short description of the widget with a link to your repository.
+
+...Other news post...
+```
+
+### Post on the trame GitHub discussions
+
+Make a short post on [announcements category](https://github.com/Kitware/trame/discussions/categories/announcements) of the trame repository's discussions.
